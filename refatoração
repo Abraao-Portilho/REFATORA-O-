@@ -1,1 +1,72 @@
 
+# Programa de notas de alunos.
+# FUNCIONA, mas está bagunçado de propósito.
+# Objetivo: refatorar SEM mudar a saída.
+
+def f(a):
+    t = 0
+    for i in a:
+        t = t + i
+    m = t / len(a)
+    return m
+
+
+def proc(n, n1, n2, n3, fr):
+    m = (n1 + n2 + n3) / 3
+    if fr >= 75:
+        m = m + 0.5
+        if m > 10:
+            m = 10
+    if m >= 7:
+        s = "Aprovado"
+    else:
+        if m >= 5:
+            s = "Recuperacao"
+        else:
+            s = "Reprovado"
+    if fr < 75:
+        s = "Reprovado por falta"
+    print("Aluno: " + n)
+    print("Media: " + str(round(m, 2)))
+    print("Situacao: " + s)
+    print("-----")
+    return m
+
+
+def velha(x):
+    y = x * 2
+    return y
+
+
+def rel(l):
+    maior = 0
+    nome_maior = ""
+    for i in l:
+        m = (i[1] + i[2] + i[3]) / 3
+        if m > maior:
+            maior = m
+            nome_maior = i[0]
+    menor = 100
+    nome_menor = ""
+    for i in l:
+        m = (i[1] + i[2] + i[3]) / 3
+        if m < menor:
+            menor = m
+            nome_menor = i[0]
+    print("Maior media: " + nome_maior + " (" + str(round(maior, 2)) + ")")
+    print("Menor media: " + nome_menor + " (" + str(round(menor, 2)) + ")")
+
+
+alunos = [
+    ("Ana", 9.0, 8.5, 10.0, 90),
+    ("Bruno", 6.0, 5.5, 7.0, 80),
+    ("Carla", 4.0, 3.5, 6.0, 85),
+    ("Diego", 8.0, 9.0, 9.5, 60),
+]
+
+medias = []
+for a in alunos:
+    medias.append(proc(a[0], a[1], a[2], a[3], a[4]))
+
+print("Media da turma: " + str(round(f(medias), 2)))
+rel(alunos)
